@@ -1,11 +1,930 @@
-<h1>Book</h1>
-  <h2>Chapter 1</h2>
-    <h3>Section 1</h3>
-    <h3>Section 2</h3> 
-  <h2>Chapter 2</h2>
-    <h3>Section 1</h3>
-     <h4>Diagram 1</h4>
-  <h2>Chapter 3</h2>
-    <h3>Section 1</h3>
-    <h3>Section 2</h3>
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National University of Management — Shaping Cambodia's Future Leaders</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Playfair Display', 'Georgia', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        num: {
+                            navy: '#0A1E3D',
+                            blue: '#1A3F6F',
+                            royal: '#2B5EA7',
+                            sky: '#4A90D9',
+                            light: '#E8F1FC',
+                            pale: '#F0F5FB',
+                            red: '#C8102E',
+                            crimson: '#A00D26',
+                            gold: '#D4A843',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::selection {
+            background-color: #0A1E3D;
+            color: #FFFFFF;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero-bg {
+            background-image: url('https://z-cdn-media.chatglm.cn/files/2b4ada06-04ae-4479-8886-ee2d120228d0.png?auth_key=1877512350-6e526a82974b4148ba8c957d05d5425f-0-7da3612e42d6125fa8a21a16be77b4e4');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(10, 30, 61, 0.88) 0%, rgba(26, 63, 111, 0.82) 40%, rgba(200, 16, 46, 0.55) 100%);
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat-counter {
+            background: linear-gradient(135deg, #0A1E3D 0%, #1A3F6F 100%);
+        }
+
+        .program-card {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .program-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -12px rgba(10, 30, 61, 0.18);
+        }
+
+        .cta-gradient {
+            background: linear-gradient(135deg, #0A1E3D 0%, #1A3F6F 50%, #C8102E 100%);
+        }
+
+        .nav-scrolled {
+            background: rgba(255, 255, 255, 0.97) !important;
+            box-shadow: 0 1px 20px rgba(10, 30, 61, 0.1);
+        }
+
+        .red-accent-line {
+            width: 60px;
+            height: 3px;
+            background: #C8102E;
+        }
+
+        .blue-accent-line {
+            width: 60px;
+            height: 3px;
+            background: #2B5EA7;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .float-animation {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.4); opacity: 0; }
+        }
+        .pulse-ring::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid #C8102E;
+            animation: pulse-ring 2s ease-out infinite;
+        }
+
+        .logo-spin:hover img {
+            transform: rotate(10deg) scale(1.05);
+            transition: transform 0.5s ease;
+        }
+
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body class="bg-white text-num-navy antialiased">
+
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 logo-spin">
+                <img src="https://z-cdn-media.chatglm.cn/files/005b9cff-d6b9-4890-8367-9fc7a3a5df90.png?auth_key=1877512350-f1c12d7299924f0e8635615e28d4b6ba-0-0d1eeb440e72e143eb0f57c258c7a471"
+                     alt="NUM Logo" class="w-12 h-12 rounded-full object-cover border-2 border-white/40 transition-transform duration-500">
+                <div class="hidden sm:block">
+                    <div class="text-white font-serif font-semibold text-sm leading-tight tracking-wide">National University</div>
+                    <div class="text-white font-serif font-semibold text-sm leading-tight tracking-wide">of Management</div>
+                </div>
+            </a>
+
+            <!-- Desktop Links -->
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="#about" class="nav-link text-white/90 text-sm font-medium tracking-wide hover:text-white transition-colors duration-300">About</a>
+                <a href="#programs" class="nav-link text-white/90 text-sm font-medium tracking-wide hover:text-white transition-colors duration-300">Programs</a>
+                <a href="#campus" class="nav-link text-white/90 text-sm font-medium tracking-wide hover:text-white transition-colors duration-300">Campus Life</a>
+                <a href="#outcomes" class="nav-link text-white/90 text-sm font-medium tracking-wide hover:text-white transition-colors duration-300">Outcomes</a>
+                <a href="#apply" class="bg-num-red text-white text-xs font-semibold tracking-widest uppercase px-6 py-3 rounded hover:bg-num-crimson transition-colors duration-300">Apply Now</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="lg:hidden text-white p-2" aria-label="Open menu">
+                <iconify-icon icon="lucide:menu" width="24" height="24"></iconify-icon>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-y-0 right-0 w-80 bg-white z-[60] shadow-2xl">
+        <div class="p-6">
+            <button id="mobileMenuClose" class="mb-8 text-num-navy hover:text-num-red transition-colors" aria-label="Close menu">
+                <iconify-icon icon="lucide:x" width="24" height="24"></iconify-icon>
+            </button>
+            <div class="flex flex-col gap-6">
+                <a href="#about" class="mobile-nav-link text-num-navy text-lg font-medium">About</a>
+                <a href="#programs" class="mobile-nav-link text-num-navy text-lg font-medium">Programs</a>
+                <a href="#campus" class="mobile-nav-link text-num-navy text-lg font-medium">Campus Life</a>
+                <a href="#outcomes" class="mobile-nav-link text-num-navy text-lg font-medium">Outcomes</a>
+                <div class="red-accent-line mt-2"></div>
+                <a href="#apply" class="bg-num-red text-white text-center text-sm font-semibold tracking-widest uppercase px-6 py-4 rounded hover:bg-num-crimson transition-colors duration-300">Apply Now</a>
+            </div>
+        </div>
+    </div>
+    <div id="mobileOverlay" class="fixed inset-0 bg-black/40 z-[55] hidden"></div>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="hero-bg relative min-h-screen flex items-center justify-center">
+        <div class="hero-overlay absolute inset-0"></div>
+
+        <!-- Decorative Elements -->
+        <div class="absolute top-32 left-10 w-2 h-2 bg-num-red rounded-full float-animation opacity-70"></div>
+        <div class="absolute top-48 right-20 w-3 h-3 bg-white/30 rounded-full float-animation opacity-60" style="animation-delay: 1s;"></div>
+        <div class="absolute bottom-40 left-1/4 w-1.5 h-1.5 bg-num-gold rounded-full float-animation opacity-50" style="animation-delay: 2s;"></div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-6 text-center pt-20">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-5 py-2 mb-8">
+                <iconify-icon icon="lucide:award" width="14" height="14" class="text-num-gold"></iconify-icon>
+                <span class="text-white/90 text-xs font-medium tracking-widest uppercase">Cambodia's Premier Public University</span>
+            </div>
+
+            <!-- Headline -->
+            <h1 class="font-serif text-white text-4xl sm:text-5xl md:text-7xl font-medium leading-[1.08] tracking-tight mb-6">
+                Shaping the Future of
+                <span class="block mt-2">
+                    <span class="relative inline-block">
+                        Business
+                        <svg class="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 12" fill="none">
+                            <path d="M2 8C50 2 250 2 298 8" stroke="#C8102E" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                    </span>
+                    &amp; Innovation
+                </span>
+            </h1>
+
+            <!-- Subheadline -->
+            <p class="text-white/80 text-base sm:text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto mb-10">
+                At the National University of Management, we empower the next generation of leaders with the knowledge, skills, and vision to drive Cambodia's economic transformation.
+            </p>
+
+            <!-- CTA Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#apply" class="bg-num-red text-white text-sm font-semibold tracking-widest uppercase px-8 py-4 rounded hover:bg-num-crimson transition-all duration-300 hover:shadow-lg hover:shadow-red-900/20 w-full sm:w-auto">
+                    Discover Your Future
+                </a>
+                <a href="#programs" class="bg-white/10 backdrop-blur-sm border border-white/30 text-white text-sm font-semibold tracking-widest uppercase px-8 py-4 rounded hover:bg-white/20 transition-all duration-300 w-full sm:w-auto">
+                    Explore Programs
+                </a>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="mt-16 md:mt-24 flex flex-col items-center gap-2 text-white/50">
+                <span class="text-xs tracking-widest uppercase">Scroll to explore</span>
+                <iconify-icon icon="lucide:chevron-down" width="20" height="20" class="animate-bounce"></iconify-icon>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== STATS BAR ==================== -->
+    <section class="stat-counter py-12 md:py-16">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                <div class="text-center reveal-on-scroll">
+                    <div class="font-serif text-white text-3xl md:text-4xl font-medium mb-1" data-count="15000">15,000+</div>
+                    <div class="text-white/60 text-xs tracking-widest uppercase">Students Enrolled</div>
+                </div>
+                <div class="text-center reveal-on-scroll" style="transition-delay: 100ms;">
+                    <div class="font-serif text-white text-3xl md:text-4xl font-medium mb-1">10+</div>
+                    <div class="text-white/60 text-xs tracking-widest uppercase">Degree Programs</div>
+                </div>
+                <div class="text-center reveal-on-scroll" style="transition-delay: 200ms;">
+                    <div class="font-serif text-white text-3xl md:text-4xl font-medium mb-1">45+</div>
+                    <div class="text-white/60 text-xs tracking-widest uppercase">International Partners</div>
+                </div>
+                <div class="text-center reveal-on-scroll" style="transition-delay: 300ms;">
+                    <div class="font-serif text-white text-3xl md:text-4xl font-medium mb-1">100%</div>
+                    <div class="text-white/60 text-xs tracking-widest uppercase">Employment Rate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ABOUT SECTION ==================== -->
+    <section id="about" class="py-24 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+                <!-- Image Side -->
+                <div class="reveal-on-scroll relative">
+                    <div class="relative rounded-lg overflow-hidden shadow-xl">
+                        <img src="https://z-cdn-media.chatglm.cn/files/2b4ada06-04ae-4479-8886-ee2d120228d0.png?auth_key=1877512350-6e526a82974b4148ba8c957d05d5425f-0-7da3612e42d6125fa8a21a16be77b4e4"
+                             alt="NUM Campus Building" class="w-full h-[420px] object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-num-navy/30 to-transparent"></div>
+                    </div>
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-6 -right-4 md:-right-8 bg-num-red text-white rounded-lg px-6 py-4 shadow-lg float-animation">
+                        <div class="font-serif text-2xl font-medium">Since</div>
+                        <div class="font-serif text-2xl font-medium">1983
+                      
+                        </div>
+                    </div>
+                    <!-- Decorative -->
+                    <div class="absolute -top-4 -left-4 w-20 h-20 border-2 border-num-royal/20 rounded-lg -z-10"></div>
+                </div>
+
+                <!-- Text Side -->
+                <div class="reveal-on-scroll" style="transition-delay: 150ms;">
+                    <div class="text-num-red text-xs font-semibold tracking-[0.2em] uppercase mb-4">About NUM</div>
+                    <div class="blue-accent-line mb-6"></div>
+                    <h2 class="font-serif text-num-navy text-3xl md:text-4xl font-medium leading-tight tracking-tight mb-8">
+                        A Legacy of Excellence in Management Education
+                    </h2>
+
+                    <div class="space-y-5 text-stone-600 text-base font-light leading-relaxed">
+                        <p>
+                            The National University of Management stands as Cambodia's foremost public institution dedicated to business, economics, and management education. Founded in 1968, NUM has evolved into a dynamic academic powerhouse that blends decades of institutional wisdom with a forward-looking commitment to innovation and global relevance. Our mission is clear: to produce graduates who are not only academically accomplished but also ethically grounded and industry-ready.
+                        </p>
+                        <p>
+                            At the core of NUM's academic identity are four strategic pillars — <strong class="text-num-navy font-medium">Management, Economics, Information & Communication Technology, and Law</strong>. These disciplines are carefully integrated to reflect the interconnected nature of today's professional landscape, ensuring that every student develops a multidisciplinary perspective that sets them apart in an increasingly competitive global economy.
+                        </p>
+                        <p>
+                            As a premier public university, NUM takes pride in its role as a national catalyst for socioeconomic development. Through rigorous research, strategic international partnerships, and deep engagement with Cambodia's public and private sectors, the National University of Management continues to shape the policies, enterprises, and institutions that define the nation's future.
+                        </p>
+                    </div>
+
+                    <div class="mt-8 flex flex-wrap gap-3">
+                        <span class="bg-num-pale text-num-blue text-xs font-medium tracking-wider uppercase px-4 py-2 rounded-full">Management</span>
+                        <span class="bg-num-pale text-num-blue text-xs font-medium tracking-wider uppercase px-4 py-2 rounded-full">Economics</span>
+                        <span class="bg-num-pale text-num-blue text-xs font-medium tracking-wider uppercase px-4 py-2 rounded-full">ICT</span>
+                        <span class="bg-num-pale text-num-blue text-xs font-medium tracking-wider uppercase px-4 py-2 rounded-full">Law</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ACADEMIC EXCELLENCE ==================== -->
+    <section id="programs" class="py-24 md:py-32 bg-num-pale">
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Section Header -->
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal-on-scroll">
+                <div class="text-num-red text-xs font-semibold tracking-[0.2em] uppercase mb-4">Academic Excellence</div>
+                <div class="red-accent-line mx-auto mb-6"></div>
+                <h2 class="font-serif text-num-navy text-3xl md:text-4xl font-medium leading-tight tracking-tight mb-5">
+                    Programs Designed for Tomorrow's Leaders
+                </h2>
+                <p class="text-stone-500 text-base font-light leading-relaxed">
+                    Our curriculum is continuously refined in partnership with global industry leaders to ensure relevance, rigor, and real-world impact.
+                </p>
+            </div>
+
+            <!-- Program Cards Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Card 1 -->
+                <div class="program-card bg-white rounded-lg p-8 border border-stone-100 reveal-on-scroll">
+                    <div class="w-12 h-12 bg-num-light rounded-lg flex items-center justify-center mb-6">
+                        <iconify-icon icon="lucide:globe" width="24" height="24" class="text-num-royal"></iconify-icon>
+                    </div>
+                    <h3 class="font-serif text-num-navy text-xl font-medium mb-3">Global Business</h3>
+                    <p class="text-stone-500 text-sm font-light leading-relaxed mb-5">
+                        Prepares students for global roles through international exchange programs in Europe and Asia, focusing on economics, trade, and legal systems. Focuses on startups, digital economy, and managing, developing, and leading innovative ventures, according to the NUM International College Booklet.
+                    </p>
+                    <ul class="space-y-2.5">
+                        <li class="flex items-start gap-2 text-stone-600 text-sm font-light">
+                            <iconify-icon icon="lucide:check" width="16" height="16" class="text-num-red mt-0.5 shrink-0"></iconify-icon>
+                            Dual-degree opportunities with partner universities across Asia, Europe, and North America
+                        </li>
+                        <li class="flex items-start gap-2 text-stone-600 text-sm font-light">
+                            <iconify-icon icon="lucide:check" width="16" height="16" class="text-num-red mt-0.5 shrink-0"></iconify-icon>
+                            Curriculum aligned with AACSB international accreditation standards
+                        </li>
+                        <li class="flex items-start gap-2 text-stone-600 text-sm font-light">
+                            <iconify-icon icon="lucide:check" width="16" height="16" class="text-num-red mt-0.5 shrink-0"></iconify-icon>
+                            Mandatory international internship placement in Year 3
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="program-card bg-white rounded-lg p-8 border border-stone-100 reveal-on-scroll" style="transition-delay: 100ms;">
+                    <div class="w-12 h-12 bg-num-light rounded-lg flex items-center justify-center mb-6">
+                        <iconify-icon icon="lucide:rocket" width="24" height="24" class="text-num-royal"></iconify-icon>
+                    </div>
+                    <h3 class="font-serif text-num-navy text-xl font-medium mb-3">Entrepreneurship & Innovation</h3>
+                    <p class="text-stone-500 text-sm font-light leading-relaxed mb-5">
+                        The NUM International College offers an English-based BBA focusing on creating innovative business models, new products, and improving organizational systems. Social Innovation Lab serves as an incubator and maker space equipped with 3D printers and virtual reality tools.
+                    </p>
+                    <ul class="space-y-2.5">
+                        <li class="flex items-start gap-2 text-stone-600 text-sm font-light">
+                            <iconify-icon icon="lucide:check" width="16" height="16" class="text-num-red mt-0.5 shrink-0"></iconify-icon>
+                            On-campus startup incubator with seed funding access
+                        </li>
+                        <li class="flex items-start gap-2 text-stone-600 text-sm font-light">
+                            <iconify-icon icon="lucide:check" width="16" height="16" class="text-num-red mt-0.5 shrink-0"></iconify-icon>
+                            Mentorship from Cambodia's top entrepreneurs and investors
+                        </li>
+                        <li class="flex items-start gap-2 text-stone-600 text-sm font-light">
+                            <iconify-icon icon="lucide:check" width="16" height="16" class="text-num-red mt-0.5 shrink-0"></iconify-icon>
+                            Pitch competitions with regional and international exposure
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="program-card bg-white rounded-lg p-8 border border-stone-100 reveal-on-scroll" style="transition-delay: 200ms;">
+                    <div class="w-12 h-12 bg-num-light rounded-lg flex items-center justify-center mb-6">
+                        <iconify-icon icon="lucide:cpu" width="24" height="24" class="text-num-royal"></iconify-icon>
+                    </div>
+                    <h3 class="font-serif text-num-navy text-xl font-medium mb-3">Digital Economy & ICT</h3>
+                    <p class="text-stone-500 text-sm font-light leading-relaxed mb-5">
+                        The Faculty of Digital Economy (FDE) at the National University of Management (NUM) offers specialized English-based programs, including Bachelor's and Master's degrees in Digital Economy, Financial Technology (FinTech), and Smart City Planning Management. A four-year program focusing on digital economic practices, new technology impacts, and business digitalization. Prepares students for roles in digital payments, AI, and blockchain-driven finance. Focuses on designing sustainable, tech-driven urban solutions and targets professionals aiming to specialize in digital solutions for business
+                    </p>
+                    <ul class="space-y-2.5">
+                        <li class="flex items-start gap-2 text-stone-600 text-sm font-light">
+                            <iconify-icon icon="lucide:check" width="16" height="16" class="text-num-red mt-0.5 shrink-0"></iconify-icon>
+                            Hands-on training in Python, cloud computing, and machine learning
+                        </li>
+                        <li class="flex items-start gap-2 text-stone-600 text-sm font-light">
+                            <iconify-icon icon="lucide:check" width="16" height="16" class="text-num-red mt-0.5 shrink-0"></iconify-icon>
+                            Industry projects with leading tech firms operating in Cambodia
+                        </li>
+                        <li class="flex items-start gap-2 text-stone-600 text-sm font-light">
+                            <iconify-icon icon="lucide:check" width="16" height="16" class="text-num-red mt-0.5 shrink-0"></iconify-icon>
+                            Focus on fintech, e-commerce, and digital government solutions
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="program-card bg-white rounded-lg p-8 border border-stone-100 reveal-on-scroll">
+                    <div class="w-12 h-12 bg-num-light rounded-lg flex items-center justify-center mb-6">
+                        <iconify-icon icon="lucide:trending-up" width="24" height="24" class="text-num-royal"></iconify-icon>
+                    </div>
+                    <h3 class="font-serif text-num-navy text-xl font-medium mb-3">Economics & Public Policy</h3>
+                    <p class="text-stone-500 text-sm font-light leading-relaxed mb-5">
+                        Focuses on digital technologies, business innovation, fintech, and smart city management, aimed at professionals in both public and private sectors. Designed to train leaders in developing, implementing, and evaluating government policy, with emphasis on economic and social challenges. Integrates economics, law, sociology, and political science within the context of digitalization.
+                    </p>
+                    <ul class="space-y-2.5">
+                        <li class="flex items-start gap-2 text-stone-600 text-sm font-light">
+                            <iconify-icon icon="lucide:check" width="16" height="16" class="text-num-red mt-0.5 shrink-0"></iconify-icon>
+                            Research partnerships with the Ministry of Economy and Finance
+                        </li>
+                        <li class="flex items-start gap-2 text-stone-600 text-sm font-light">
+                            <iconify-icon icon="lucide:check" width="16" height="16" class="text-num-red mt-0.5 shrink-0"></iconify-icon>
+                            Econometric modeling and data-driven policy analysis training
+                        </li>
+                        <li class="flex items-start gap-2 text-stone-600 text-sm font-light">
+                            <iconify-icon icon="lucide:check" width="16" height="16" class="text-num-red mt-0.5 shrink-0"></iconify-icon>
+                            Publication opportunities in ASEAN economic journals
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="program-card bg-white rounded-lg p-8 border border-stone-100 reveal-on-scroll" style="transition-delay: 100ms;">
+                    <div class="w-12 h-12 bg-num-light rounded-lg flex items-center justify-center mb-6">
+                        <iconify-icon icon="lucide:scale" width="24" height="24" class="text-num-royal"></iconify-icon>
+                    </div>
+                    <h3 class="font-serif text-num-navy text-xl font-medium mb-3">Business Law & Governance</h3>
+                    <p class="text-stone-500 text-sm font-light leading-relaxed mb-5">
+                        This program focus on the legal frameworks governing corporate entities, commercial transactions, and governance structures within Cambodia and in a globalized context. The MBL focuses on corporate governance, regulation, structuring, financing, and management. It covers the legal frameworks governing businesses from formation to dissolution. This program is designed to provide thorough, advanced knowledge of legislative issues crucial to companies and regulatory bodies.
+                    </p>
+                    <ul class="space-y-2.5">
+                        <li class="flex items-start gap-2 text-stone-600 text-sm font-light">
+                            <iconify-icon icon="lucide:check" width="16" height="16" class="text-num-red mt-0.5 shrink-0"></iconify-icon>
+                            Comparative law approach covering ASEAN and international trade law
+                        </li>
+                        <li class="flex items-start gap-2 text-stone-600 text-sm font-light">
+                            <iconify-icon icon="lucide:check" width="16" height="16" class="text-num-red mt-0.5 shrink-0"></iconify-icon>
+                            Moot court competitions and legal clinic experience
+                        </li>
+                        <li class="flex items-start gap-2 text-stone-600 text-sm font-light">
+                            <iconify-icon icon="lucide:check" width="16" height="16" class="text-num-red mt-0.5 shrink-0"></iconify-icon>
+                            Focus on ESG compliance and corporate governance standards
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="program-card bg-white rounded-lg p-8 border border-stone-100 reveal-on-scroll" style="transition-delay: 200ms;">
+                    <div class="w-12 h-12 bg-num-light rounded-lg flex items-center justify-center mb-6">
+                        <iconify-icon icon="lucide:banknote" width="24" height="24" class="text-num-royal"></iconify-icon>
+                    </div>
+                    <h3 class="font-serif text-num-navy text-xl font-medium mb-3">Finance & Accounting</h3>
+                    <p class="text-stone-500 text-sm font-light leading-relaxed mb-5">
+                        This programs offer a comprehensive 4-year undergraduate degree designed to prepare students for corporate finance, banking, and auditing roles. It integrates local Cambodian accounting standards with international practices, focusing on financial management, taxation, and investment.
+                    </p>
+                    <ul class="space-y-2.5">
+                        <li class="flex items-start gap-2 text-stone-600 text-sm font-light">
+                            <iconify-icon icon="lucide:check" width="16" height="16" class="text-num-red mt-0.5 shrink-0"></iconify-icon>
+                            ACCA and CPA-aligned curriculum pathways
+                        </li>
+                        <li class="flex items-start gap-2 text-stone-600 text-sm font-light">
+                            <iconify-icon icon="lucide:check" width="16" height="16" class="text-num-red mt-0.5 shrink-0"></iconify-icon>
+                            Bloomberg Terminal access and financial simulation labs
+                        </li>
+                        <li class="flex items-start gap-2 text-stone-600 text-sm font-light">
+                            <iconify-icon icon="lucide:check" width="16" height="16" class="text-num-red mt-0.5 shrink-0"></iconify-icon>
+                            Direct pipeline to Cambodia's banking and financial sector
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Degree Value Summary -->
+            <div class="mt-16 bg-white rounded-lg border border-stone-100 p-8 md:p-12 reveal-on-scroll">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="font-serif text-num-navy text-2xl font-medium mb-4">The NUM Degree Advantage</h3>
+                        <div class="red-accent-line mb-6"></div>
+                        <p class="text-stone-500 text-base font-light leading-relaxed">
+                            A degree from the National University of Management is more than a credential — it is a signal of excellence recognized across Cambodia and the ASEAN region. Our graduates are sought after for their analytical depth, ethical grounding, and readiness to lead from day one.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-num-pale rounded-lg p-5 text-center">
+                            <iconify-icon icon="lucide:shield-check" width="28" height="28" class="text-num-royal mb-2"></iconify-icon>
+                            <div class="text-num-navy text-sm font-medium">Nationally Accredited</div>
+                        </div>
+                        <div class="bg-num-pale rounded-lg p-5 text-center">
+                            <iconify-icon icon="lucide:languages" width="28" height="28" class="text-num-royal mb-2"></iconify-icon>
+                            <div class="text-num-navy text-sm font-medium">Bilingual Instruction</div>
+                        </div>
+                        <div class="bg-num-pale rounded-lg p-5 text-center">
+                            <iconify-icon icon="lucide:briefcase" width="28" height="28" class="text-num-royal mb-2"></iconify-icon>
+                            <div class="text-num-navy text-sm font-medium">Industry-Linked</div>
+                        </div>
+                        <div class="bg-num-pale rounded-lg p-5 text-center">
+                            <iconify-icon icon="lucide:heart-handshake" width="28" height="28" class="text-num-royal mb-2"></iconify-icon>
+                            <div class="text-num-navy text-sm font-medium">ASEAN Recognized</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CAMPUS LIFE ==================== -->
+    <section id="campus" class="py-24 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+                <!-- Text Side -->
+                <div class="order-2 md:order-1 reveal-on-scroll">
+                    <div class="text-num-red text-xs font-semibold tracking-[0.2em] uppercase mb-4">Student Life</div>
+                    <div class="blue-accent-line mb-6"></div>
+                    <h2 class="font-serif text-num-navy text-3xl md:text-4xl font-medium leading-tight tracking-tight mb-8">
+                        A Vibrant Community Where Ideas Thrive
+                    </h2>
+
+                    <div class="space-y-5 text-stone-600 text-base font-light leading-relaxed">
+                        <p>
+                            Life at the National University of Management extends far beyond the lecture hall. Our campus in the heart of Phnom Penh pulses with energy — from student-led business case competitions and TED-style talks to cultural festivals that celebrate Cambodia's rich heritage alongside global perspectives. With over 30 active student clubs and organizations, there is a place for every passion.
+                        </p>
+                        <p>
+                            NUM students benefit from a thriving ecosystem that bridges academic learning with real-world experience. Regular industry networking events, guest lectures by C-suite executives, and field visits to Cambodia's leading enterprises ensure that learning is always connected to practice. Our annual Innovation Week and Entrepreneurship Summit have become flagship events on the national calendar.
+                        </p>
+                        <p>
+                            International exchange is woven into the fabric of student life. Each year, hundreds of NUM students study abroad through partnerships with universities in Japan, South Korea, France, Australia, and across Southeast Asia — while international students from over 20 countries choose NUM as their gateway to understanding Cambodia's dynamic economy.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Image Grid Side -->
+                <div class="order-1 md:order-2 reveal-on-scroll" style="transition-delay: 150ms;">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-4">
+                            <div class="rounded-lg overflow-hidden shadow-md">
+                                <img src="474459567_122203792472084694_2408517528233825045_n.jpg" alt="Students collaborating" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="bg-num-navy rounded-lg p-5">
+                                <div class="font-serif text-white text-2xl font-medium mb-1">30+</div>
+                                <div class="text-white/60 text-xs tracking-widest uppercase">Student Clubs</div>
+                            </div>
+                        </div>
+                        <div class="space-y-4 pt-8">
+                            <div class="bg-num-red rounded-lg p-5">
+                                <div class="font-serif text-white text-2xl font-medium mb-1">20+</div>
+                                <div class="text-white/80 text-xs tracking-widest uppercase">Countries Represented</div>
+                            </div>
+                            <div class="rounded-lg overflow-hidden shadow-md">
+                                <img src="560636145_1223416686479547_5579598294787855113_n.jpg" alt="Campus event" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-500">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CAREER OUTCOMES ==================== -->
+    <section id="outcomes" class="py-24 md:py-32 bg-num-navy relative overflow-hidden">
+        <!-- Decorative -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-num-royal/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-72 h-72 bg-num-red/10 rounded-full blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <!-- Section Header -->
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal-on-scroll">
+                <div class="text-num-red text-xs font-semibold tracking-[0.2em] uppercase mb-4">Career Outcomes</div>
+                <div class="red-accent-line mx-auto mb-6"></div>
+                <h2 class="font-serif text-white text-3xl md:text-4xl font-medium leading-tight tracking-tight mb-5">
+                    From Classroom to Career — Seamlessly
+                </h2>
+                <p class="text-white/60 text-base font-light leading-relaxed">
+                    NUM's deep integration with Cambodia's economy means our graduates don't just find jobs — they shape industries.
+                </p>
+            </div>
+
+            <!-- Outcomes Grid -->
+            <div class="grid md:grid-cols-3 gap-6 mb-16">
+                <!-- Outcome 1 -->
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8 reveal-on-scroll hover:bg-white/10 transition-all duration-300">
+                    <iconify-icon icon="lucide:building-2" width="32" height="32" class="text-num-gold mb-5"></iconify-icon>
+                    <h3 class="font-serif text-white text-lg font-medium mb-3">Top Employer Network</h3>
+                    <p class="text-white/60 text-sm font-light leading-relaxed">
+                        NUM graduates are recruited by Cambodia's leading banks, telecom companies, NGOs, and multinational corporations. Our annual Career Fair attracts over 80 employers directly to campus.
+                    </p>
+                </div>
+
+                <!-- Outcome 2 -->
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8 reveal-on-scroll hover:bg-white/10 transition-all duration-300" style="transition-delay: 100ms;">
+                    <iconify-icon icon="lucide:plane" width="32" height="32" class="text-num-gold mb-5"></iconify-icon>
+                    <h3 class="font-serif text-white text-lg font-medium mb-3">Global Mobility</h3>
+                    <p class="text-white/60 text-sm font-light leading-relaxed">
+                        With credits transferable to over 50 partner universities worldwide, NUM alumni pursue master's degrees at institutions in Japan, France, Australia, the US, and across ASEAN.
+                    </p>
+                </div>
+
+                <!-- Outcome 3 -->
+                <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-8 reveal-on-scroll hover:bg-white/10 transition-all duration-300" style="transition-delay: 200ms;">
+                    <iconify-icon icon="lucide:users" width="32" height="32" class="text-num-gold mb-5"></iconify-icon>
+                    <h3 class="font-serif text-white text-lg font-medium mb-3">Alumni Impact</h3>
+                    <p class="text-white/60 text-sm font-light leading-relaxed">
+                        NUM alumni serve as CEOs, government ministers, central bank officials, and social enterprise founders. The NUM Alumni Network connects over 50,000 professionals across every sector of Cambodia's economy.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Testimonial -->
+            <div class="max-w-3xl mx-auto text-center reveal-on-scroll">
+                <iconify-icon icon="lucide:quote" width="40" height="40" class="text-num-red/40 mb-6"></iconify-icon>
+                <blockquote class="font-serif text-white text-xl md:text-2xl font-normal leading-relaxed italic mb-6">
+                    "NUM gave me the foundation to think critically about Cambodia's economic challenges and the confidence to lead solutions. The education I received here opened doors I never imagined possible."
+                </blockquote>
+                <div class="flex items-center justify-center gap-3">
+                    <div class="w-10 h-10 bg-num-royal rounded-full flex items-center justify-center">
+                        <iconify-icon icon="lucide:user" width="18" height="18" class="text-white"></iconify-icon>
+                    </div>
+                    <div class="text-left">
+                        <div class="text-white text-sm font-medium">Nataional University of Management, Class of 2026</div>
+                        <div class="text-white/50 text-xs">Senior Analyst, Asian Development Bank</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== WHY NUM ==================== -->
+    <section class="py-24 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal-on-scroll">
+                <div class="text-num-red text-xs font-semibold tracking-[0.2em] uppercase mb-4">Why Choose NUM</div>
+                <div class="red-accent-line mx-auto mb-6"></div>
+                <h2 class="font-serif text-num-navy text-3xl md:text-4xl font-medium leading-tight tracking-tight">
+                    What Sets Us Apart
+                </h2>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center reveal-on-scroll group">
+                    <div class="w-16 h-16 bg-num-light rounded-full flex items-center justify-center mx-auto mb-5 group-hover:bg-num-royal transition-colors duration-300">
+                        <iconify-icon icon="lucide:book-open" width="28" height="28" class="text-num-royal group-hover:text-white transition-colors duration-300"></iconify-icon>
+                    </div>
+                    <h4 class="font-serif text-num-navy text-lg font-medium mb-2">Academic Rigor</h4>
+                    <p class="text-stone-500 text-sm font-light leading-relaxed">Curricula benchmarked against the world's top business schools and updated annually.</p>
+                </div>
+
+                <div class="text-center reveal-on-scroll group" style="transition-delay: 100ms;">
+                    <div class="w-16 h-16 bg-num-light rounded-full flex items-center justify-center mx-auto mb-5 group-hover:bg-num-royal transition-colors duration-300">
+                        <iconify-icon icon="lucide:handshake" width="28" height="28" class="text-num-royal group-hover:text-white transition-colors duration-300"></iconify-icon>
+                    </div>
+                    <h4 class="font-serif text-num-navy text-lg font-medium mb-2">Industry Access</h4>
+                    <p class="text-stone-500 text-sm font-light leading-relaxed">Direct pipelines to Cambodia's banks, tech firms, MNCs, and government agencies.</p>
+                </div>
+
+                <div class="text-center reveal-on-scroll group" style="transition-delay: 200ms;">
+                    <div class="w-16 h-16 bg-num-light rounded-full flex items-center justify-center mx-auto mb-5 group-hover:bg-num-royal transition-colors duration-300">
+                        <iconify-icon icon="lucide:map-pin" width="28" height="28" class="text-num-royal group-hover:text-white transition-colors duration-300"></iconify-icon>
+                    </div>
+                    <h4 class="font-serif text-num-navy text-lg font-medium mb-2">Prime Location</h4>
+                    <p class="text-stone-500 text-sm font-light leading-relaxed">Campus in central Phnom Penh — at the intersection of culture, commerce, and opportunity.</p>
+                </div>
+
+                <div class="text-center reveal-on-scroll group" style="transition-delay: 300ms;">
+                    <div class="w-16 h-16 bg-num-light rounded-full flex items-center justify-center mx-auto mb-5 group-hover:bg-num-royal transition-colors duration-300">
+                        <iconify-icon icon="lucide:heart" width="28" height="28" class="text-num-royal group-hover:text-white transition-colors duration-300"></iconify-icon>
+                    </div>
+                    <h4 class="font-serif text-num-navy text-lg font-medium mb-2">National Mission</h4>
+                    <p class="text-stone-500 text-sm font-light leading-relaxed">As a public university, NUM is committed to accessibility, equity, and nation-building.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CTA SECTION ==================== -->
+    <section id="apply" class="py-24 md:py-32 cta-gradient relative overflow-hidden">
+        <!-- Decorative -->
+        <div class="absolute top-10 left-10 w-64 h-64 border border-white/5 rounded-full"></div>
+        <div class="absolute bottom-10 right-10 w-48 h-48 border border-white/5 rounded-full"></div>
+
+        <div class="max-w-4xl mx-auto px-6 text-center relative z-10 reveal-on-scroll">
+            <!-- Logo -->
+            
+
+            <h2 class="font-serif text-white text-3xl md:text-5xl font-medium leading-tight tracking-tight mb-6">
+                Your Future Starts Here
+            </h2>
+            <p class="text-white/80 text-base md:text-lg font-light leading-relaxed max-w-2xl mx-auto mb-10">
+                Join 15,000+ students at Cambodia's premier public university for business and management. Applications for the upcoming academic year are now open.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
+                <a href="#" class="bg-white text-num-navy text-sm font-semibold tracking-widest uppercase px-10 py-4 rounded hover:bg-stone-100 transition-all duration-300 hover:shadow-lg w-full sm:w-auto inline-flex items-center justify-center gap-2">
+                    Apply Now
+                    <iconify-icon icon="lucide:arrow-right" width="16" height="16"></iconify-icon>
+                </a>
+                <a href="#" class="bg-transparent border-2 border-white/40 text-white text-sm font-semibold tracking-widest uppercase px-10 py-4 rounded hover:bg-white/10 transition-all duration-300 w-full sm:w-auto inline-flex items-center justify-center gap-2">
+                    Request Information
+                </a>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-6 text-white/60 text-sm">
+                <span class="flex items-center gap-2">
+                    <iconify-icon icon="lucide:calendar" width="16" height="16"></iconify-icon>
+                    Deadline: August 30, 2025
+                </span>
+                <span class="flex items-center gap-2">
+                    <iconify-icon icon="lucide:phone" width="16" height="16"></iconify-icon>
+                    +855 23 210 838
+                </span>
+                <span class="flex items-center gap-2">
+                    <iconify-icon icon="lucide:mail" width="16" height="16"></iconify-icon>
+                    info@num.edu.kh
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-num-navy pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-10 mb-12">
+                <!-- Col 1: Brand -->
+                <div class="md:col-span-1">
+                    <div class="flex items-center gap-3 mb-5">
+                        <img src="https://z-cdn-media.chatglm.cn/files/005b9cff-d6b9-4890-8367-9fc7a3a5df90.png?auth_key=1877512350-f1c12d7299924f0e8635615e28d4b6ba-0-0d1eeb440e72e143eb0f57c258c7a471"
+                             alt="NUM Logo" class="w-10 h-10 rounded-full border border-white/20">
+                        <div>
+                            <div class="text-white font-serif text-sm font-medium leading-tight">National University</div>
+                            <div class="text-white font-serif text-sm font-medium leading-tight">of Management</div>
+                        </div>
+                    </div>
+                    <p class="text-white/50 text-sm font-light leading-relaxed mb-5">
+                        Cambodia's premier public university for business, economics, ICT, and law education.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="https://www.facebook.com/num.edu.kh/" target="_blank" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-num-royal transition-colors duration-300" aria-label="Facebook">
+                            <iconify-icon icon="lucide:facebook" width="16" height="16" class="text-white"></iconify-icon>
+                        </a>
+                        </a>
+                        <a href="https://www.instagram.com/num_university/reels/" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-num-royal transition-colors duration-300" aria-label="Instagram">
+                            <iconify-icon icon="lucide:instagram" width="16" height="16" class="text-white"></iconify-icon>
+                        </a>
+                        <a href="https://www.youtube.com/@numkh" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-num-royal transition-colors duration-300" aria-label="Youtube">
+                            <iconify-icon icon="lucide:youtube" width="16" height="16" class="text-white"></iconify-icon>
+                        </a>
+                        <a href="https://kh.linkedin.com/school/national-university-of-management/" class="w-9 h-9 bg-white/10 rounded-full flex items-center justify-center hover:bg-num-royal transition-colors duration-300" aria-label="LinkedIn">
+                            <iconify-icon icon="lucide:linkedin" width="16" height="16" class="text-white"></iconify-icon>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Programs -->
+                <div>
+                    <h5 class="text-white text-xs font-semibold tracking-widest uppercase mb-5">Programs</h5>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-white/50 text-sm font-light hover:text-white transition-colors duration-300">Global Business</a></li>
+                        <li><a href="#" class="text-white/50 text-sm font-light hover:text-white transition-colors duration-300">Entrepreneurship</a></li>
+                        <li><a href="#" class="text-white/50 text-sm font-light hover:text-white transition-colors duration-300">Digital Economy & ICT</a></li>
+                        <li><a href="#" class="text-white/50 text-sm font-light hover:text-white transition-colors duration-300">Economics & Policy</a></li>
+                        <li><a href="#" class="text-white/50 text-sm font-light hover:text-white transition-colors duration-300">Business Law</a></li>
+                        <li><a href="#" class="text-white/50 text-sm font-light hover:text-white transition-colors duration-300">Finance & Accounting</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Resources -->
+                <div>
+                    <h5 class="text-white text-xs font-semibold tracking-widest uppercase mb-5">Resources</h5>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-white/50 text-sm font-light hover:text-white transition-colors duration-300">Admissions</a></li>
+                        <li><a href="#" class="text-white/50 text-sm font-light hover:text-white transition-colors duration-300">Scholarships</a></li>
+                        <li><a href="#" class="text-white/50 text-sm font-light hover:text-white transition-colors duration-300">Research Center</a></li>
+                        <li><a href="#" class="text-white/50 text-sm font-light hover:text-white transition-colors duration-300">Library</a></li>
+                        <li><a href="#" class="text-white/50 text-sm font-light hover:text-white transition-colors duration-300">Alumni Network</a></li>
+                        <li><a href="#" class="text-white/50 text-sm font-light hover:text-white transition-colors duration-300">International Office</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Contact -->
+                <div>
+                    <h5 class="text-white text-xs font-semibold tracking-widest uppercase mb-5">Contact</h5>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <iconify-icon icon="lucide:map-pin" width="16" height="16" class="text-num-red mt-1 shrink-0"></iconify-icon>
+                            <span class="text-white/50 text-sm font-light">Street 374, Sangkat Tonle Bassac, Khan Chamkar Mon, Phnom Penh, Cambodia</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <iconify-icon icon="lucide:phone" width="16" height="16" class="text-num-red shrink-0"></iconify-icon>
+                            <span class="text-white/50 text-sm font-light">+855 23 210 838</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <iconify-icon icon="lucide:mail" width="16" height="16" class="text-num-red shrink-0"></iconify-icon>
+                            <span class="text-white/50 text-sm font-light">info@num.edu.kh</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <iconify-icon icon="lucide:clock" width="16" height="16" class="text-num-red shrink-0"></iconify-icon>
+                            <span class="text-white/50 text-sm font-light">Mon–Fri: 7:30 AM – 5:30 PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-white/30 text-xs font-light">
+                    © 2025 National University of Management. All rights reserved.
+                </p>
+                <div class="flex gap-6">
+                    <a href="#" class="text-white/30 text-xs font-light hover:text-white/60 transition-colors duration-300">Privacy Policy</a>
+                    <a href="#" class="text-white/30 text-xs font-light hover:text-white/60 transition-colors duration-300">Terms of Use</a>
+                    <a href="#" class="text-white/30 text-xs font-light hover:text-white/60 transition-colors duration-300">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const logoText = navbar.querySelector('.hidden.sm\\:block');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) {
+                navbar.classList.add('nav-scrolled');
+                navLinks.forEach(link => {
+                    link.classList.remove('text-white/90');
+                    link.classList.add('text-num-navy');
+                    link.classList.remove('hover:text-white');
+                    link.classList.add('hover:text-num-red');
+                });
+                if (logoText) {
+                    logoText.querySelectorAll('div').forEach(d => {
+                        d.classList.remove('text-white');
+                        d.classList.add('text-num-navy');
+                    });
+                }
+                const logoImg = navbar.querySelector('img');
+                if (logoImg) {
+                    logoImg.classList.remove('border-white/40');
+                    logoImg.classList.add('border-num-navy/20');
+                }
+                document.getElementById('mobileMenuBtn').classList.remove('text-white');
+                document.getElementById('mobileMenuBtn').classList.add('text-num-navy');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+                navLinks.forEach(link => {
+                    link.classList.add('text-white/90');
+                    link.classList.remove('text-num-navy');
+                    link.classList.add('hover:text-white');
+                    link.classList.remove('hover:text-num-red');
+                });
+                if (logoText) {
+                    logoText.querySelectorAll('div').forEach(d => {
+                        d.classList.add('text-white');
+                        d.classList.remove('text-num-navy');
+                    });
+                }
+                const logoImg = navbar.querySelector('img');
+                if (logoImg) {
+                    logoImg.classList.add('border-white/40');
+                    logoImg.classList.remove('border-num-navy/20');
+                }
+                document.getElementById('mobileMenuBtn').classList.add('text-white');
+                document.getElementById('mobileMenuBtn').classList.remove('text-num-navy');
+            }
+        });
+
+        // Mobile menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        function openMenu() {
+            mobileMenu.classList.add('open');
+            mobileOverlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMenu() {
+            mobileMenu.classList.remove('open');
+            mobileOverlay.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuBtn.addEventListener('click', openMenu);
+        mobileMenuClose.addEventListener('click', closeMenu);
+        mobileOverlay.addEventListener('click', closeMenu);
+        mobileNavLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
